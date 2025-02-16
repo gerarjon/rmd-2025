@@ -6,8 +6,6 @@ import Link from 'next/link';
 export const Header = () => {
     const { user, loading } = useAuth();
 
-    console.log(user, loading);
-
     return (
         <div className="py-4 px-8 border-b font-medium flex justify-between">
             <Link href = {'/'}>Rmd</Link>

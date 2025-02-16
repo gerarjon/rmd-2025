@@ -1,4 +1,4 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "./firebase";
 
 export const getSchools = async () => {
@@ -9,3 +9,18 @@ export const getSchools = async () => {
         })
     );
 };
+
+export const getDorms = async (schoolID) => {
+    return (
+        await getDocs(
+            query(collection(db, "dorms"), where("schoolID", "==", schoolID))
+        )
+    ).docs.map((docSnap) => ({
+            ...docSnap.data(),
+            id: docSnap.id,
+    }));
+};
+
+export const getSchoolFromSchoolID = async (schoolID) => {
+    return (await getDoc(doc(db, "schools", schoolID))).data();
+}

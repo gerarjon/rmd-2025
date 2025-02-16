@@ -1,4 +1,4 @@
-import { Header } from "./containers/header";
+import { Header } from "../containers/Header.js";
 import "./globals.css";
 
 export const metadata = {
