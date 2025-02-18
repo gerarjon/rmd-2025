@@ -23,4 +23,8 @@ export const getDorms = async (schoolID) => {
 
 export const getSchoolFromSchoolID = async (schoolID) => {
     return (await getDoc(doc(db, "schools", schoolID))).data();
-}
+};
+
+export const userIsAdmin = async (uid) => {
+    return (await getDoc(doc(db, "admins", uid))).exists();
+};
