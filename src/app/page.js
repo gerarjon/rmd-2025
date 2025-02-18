@@ -1,5 +1,7 @@
+import { AdminAddSchool } from "@/containers/admin/AdminAddSchool";
 import { getSchools } from "@/lib/reads";
 import Link from "next/link";
+
 
 export default async function Home() {
   const schools = await getSchools();
@@ -17,8 +19,10 @@ export default async function Home() {
           </Link>
         ))}  
       </div>
+
+
+
+      <AdminAddSchool />
     </div>
-
-
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getSchoolFromSchoolID, getDorms } from "@/lib/reads";
+import { AdminAddDorm } from "@/containers/admin/AdminAddDorm";
 
 
 export async function generateMetadata({ params }) {
@@ -45,6 +46,8 @@ export default async function Page({ params }) {
                     )
                 })}
             </ul>
+
+            <AdminAddDorm schoolID={schoolID}/>
         </div>
     );
 };
