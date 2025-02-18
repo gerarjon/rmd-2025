@@ -28,3 +28,15 @@ export const getSchoolFromSchoolID = async (schoolID) => {
 export const userIsAdmin = async (uid) => {
     return (await getDoc(doc(db, "admins", uid))).exists();
 };
+
+
+export const getReviews = async (dormID) => {
+    return (
+        (await getDocs(
+            query(collection(db, "reviews"), where("dormID", "==", dormID))
+        )).docs.map((docSnap) => ({
+            ...docSnap.data(),
+            id: docSnap.id,
+        }))
+    );
+};

@@ -27,3 +27,7 @@ export const setDormDoc = ({ schoolID, dormName }) => {
         dormName,
     });
 };
+
+export const setReviewDoc = (data) => {
+    return addDoc(collection(db, "reviews"), data);
+};
