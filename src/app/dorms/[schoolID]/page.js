@@ -39,7 +39,7 @@ export default async function Page({ params }) {
             <ul className="space-y-4">
                 {dorms.map(dorm => {
                     return (
-                        <li key={dorm.dormID}>
+                        <li className="rounded-xl border p-4" key={dorm.dormID}>
                             <Link href={`/reviews/${schoolID}/${dorm.dormID}`}>
                                 <section className="space-y-1">
                                     <h3 className="font-medium text-xl">{dorm.dormName}</h3>

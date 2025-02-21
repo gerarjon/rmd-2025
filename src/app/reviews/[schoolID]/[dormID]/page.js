@@ -1,3 +1,4 @@
+import { Review } from "@/components/Review";
 import { StarRating } from "@/components/StarRating";
 import { WriteReview } from "@/containers/WriteReview";
 import { getDormFromDormID, getReviews, getSchoolFromSchoolID } from "@/lib/reads";
@@ -43,12 +44,12 @@ export default async function Page({ params }) {
                 {reviews.map((review) => {
                     return (
                         <div key={review.id}>
-                            <div className="space-y-3 w-full border p-4 rounded-xl">
-                                <StarRating rating={review.rating} readOnly />
-
-                                <p>{review.comment}</p>
-                                <p></p>
-                            </div>
+                            <Review 
+                                uid={review.uid}
+                                rating={review.rating}
+                                comment={review.comment}
+                                date={review.date.toDate().toLocaleDateString("en-US")} 
+                            />
                         </div>
                     )
                 })}

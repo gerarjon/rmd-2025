@@ -31,3 +31,7 @@ export const setDormDoc = ({ schoolID, dormName }) => {
 export const setReviewDoc = (data) => {
     return addDoc(collection(db, "reviews"), data);
 };
+
+export const banUser = (uid) => {
+    return setDoc(doc(db, "banned", uid), { uid });
+};
