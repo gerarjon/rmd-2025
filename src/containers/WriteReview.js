@@ -1,5 +1,6 @@
 "use client"
 import { ButtonPrimary } from "@/components/Button";
+import { StarRating } from "@/components/StarRating";
 import { useAuth } from "@/lib/useAuth";
 import { setReviewDoc } from "@/lib/writes";
 import { Timestamp } from "firebase/firestore";
@@ -51,15 +52,8 @@ export const WriteReview = ( {dorm, school }) => {
             <form className="space-y-8" onSubmit={submitReview}>
                 <div className="space-y-1">
                     <p className="font-medium">Rate the dorm</p>
-                    <input 
-                        type="number"
-                        placeholder="Enter a Rating 1-5"
-                        onChange={(e) => setRating(e.target.value)}
-                        min={1}
-                        max={5}
-                        value={rating}
-                        className="w-full border-gray-400 border p-2 rounded" 
-                    />
+
+                    <StarRating rating={Number(rating)} setrating={setRating}/>
                 </div>
 
                 <div className="space-y-1">

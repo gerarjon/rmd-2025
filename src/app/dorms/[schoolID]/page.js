@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSchoolFromSchoolID, getDorms } from "@/lib/reads";
 import { AdminAddDorm } from "@/containers/admin/AdminAddDorm";
+import { StarRating } from "@/components/StarRating";
 
 
 export async function generateMetadata({ params }) {
@@ -35,12 +36,18 @@ export default async function Page({ params }) {
                 <p>Browse {dorms.length} dorm{dorms.length !== 1 &&<>s</>}</p>
             </div>
 
-            <ul>
+            <ul className="space-y-4">
                 {dorms.map(dorm => {
                     return (
                         <li key={dorm.dormID}>
-                            <Link className="hover:underline" href={`/reviews/${schoolID}/${dorm.dormID}`}>
-                                {dorm.dormName}
+                            <Link href={`/reviews/${schoolID}/${dorm.dormID}`}>
+                                <section className="space-y-1">
+                                    <h3 className="font-medium text-xl">{dorm.dormName}</h3>
+
+                                    <StarRating readOnly rating={dorm.rating} />
+
+                                    <p>{dorm.numReviews || 0} reviews</p>
+                                </section>
                             </Link>
                         </li>
                     )

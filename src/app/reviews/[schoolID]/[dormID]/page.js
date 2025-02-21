@@ -1,3 +1,4 @@
+import { StarRating } from "@/components/StarRating";
 import { WriteReview } from "@/containers/WriteReview";
 import { getDormFromDormID, getReviews, getSchoolFromSchoolID } from "@/lib/reads";
 import Link from "next/link";
@@ -30,14 +31,26 @@ export default async function Page({ params }) {
                 </Link>
 
                 <h1 className="text-3xl font-bold">{dorm.dormName} Reviews</h1>
-                {dorm.rating && <p> {(dorm.rating).toFixed(1)}</p>}
+
+                {dorm.rating && <StarRating rating={dorm.rating} readOnly/>}
+
+                <p className="font-medium">{dorm.numReviews || 0} Review{dorm.numReviews !==1 &&<>s</>}</p>
             </div>
 
             <WriteReview dorm={dorm} school={school} />
 
             <div className="space-y-4">
                 {reviews.map((review) => {
-                    return <div key={review.id}>{review.comment}</div>
+                    return (
+                        <div key={review.id}>
+                            <div className="space-y-3 w-full border p-4 rounded-xl">
+                                <StarRating rating={review.rating} readOnly />
+
+                                <p>{review.comment}</p>
+                                <p></p>
+                            </div>
+                        </div>
+                    )
                 })}
             </div>
         </div>
